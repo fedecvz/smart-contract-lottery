@@ -1,0 +1,11 @@
+@chainlink/contracts/=lib/chainlink-evm/contracts/
+@chainlink/contracts@1.5.0/=lib/chainlink-evm/contracts/
+@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
+@openzeppelin/contracts@4.9.6/=lib/openzeppelin-contracts/contracts/
+lib/openzeppelin-contracts/:forge-std/=lib/openzeppelin-contracts/lib/forge-std/src/
+chainlink-evm/=lib/chainlink-evm/
+ds-test/=lib/openzeppelin-contracts/lib/forge-std/lib/ds-test/src/
+erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/
+forge-std/=lib/forge-std/src/
+openzeppelin-contracts/=lib/openzeppelin-contracts/
+openzeppelin/=lib/openzeppelin-contracts/contracts/
