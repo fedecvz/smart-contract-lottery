@@ -21,7 +21,9 @@ contract RaffleTest is CodeConstants, Test {
     address public PLAYER = makeAddr("player");
     uint256 public constant STARTING_PLAYER_BALANCE = 10 ether;
 
-    /** Events */
+    /**
+     * Events
+     */
     event RaffleEntered(address indexed player);
     event WinnerPicked(address indexed winner);
 
@@ -125,7 +127,7 @@ contract RaffleTest is CodeConstants, Test {
 
     function testPerformUpkeepUpdatesRaffleStateAndEmitsRequestId() public raffleEntered {
         vm.recordLogs();
-        raffle.performUpkeep("");       
+        raffle.performUpkeep("");
         Vm.Log[] memory entries = vm.getRecordedLogs();
         bytes32 requestId = entries[1].topics[1];
 
@@ -134,7 +136,11 @@ contract RaffleTest is CodeConstants, Test {
         assert(uint256(raffleState) == 1);
     }
 
-    function testFulfillRandomWordsCanOnlyBeCalledAfterPerformUpkeep(uint256 randomRequestId) public raffleEntered skipForkTests {
+    function testFulfillRandomWordsCanOnlyBeCalledAfterPerformUpkeep(uint256 randomRequestId)
+        public
+        raffleEntered
+        skipForkTests
+    {
         vm.expectRevert(VRFCoordinatorV2_5Mock.InvalidRequest.selector);
         VRFCoordinatorV2_5Mock(vrfCoordinator).fulfillRandomWords(randomRequestId, address(raffle));
     }
@@ -154,7 +160,7 @@ contract RaffleTest is CodeConstants, Test {
         uint256 winnerStartingBalance = expectedWinner.balance;
 
         vm.recordLogs();
-        raffle.performUpkeep("");       
+        raffle.performUpkeep("");
         Vm.Log[] memory entries = vm.getRecordedLogs();
         bytes32 requestId = entries[1].topics[1];
 
